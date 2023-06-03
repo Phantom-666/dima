@@ -2,7 +2,6 @@ import express from 'express'
 import { PORT, stylesPath } from './config'
 
 // TODO: make cart
-// TODO: make product page
 // TODO: make order
 // TODO: upload high resolution images
 // TODO: make add to cart
@@ -22,7 +21,8 @@ const run = () => {
     require('./routes/get/product'))
 
     app.use('/', 
-    require('./routes/post/products'))
+    require('./routes/post/products'),
+    require('./routes/post/product'))
     
     app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
 

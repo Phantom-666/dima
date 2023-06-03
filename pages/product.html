@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
   <title>Всемайки - Футболка</title>
   <style>
     /* Reset default styles */
@@ -146,7 +145,7 @@
     <nav>
       <ul>
         <li><a href="/">Главная</a></li>
-        <li><a href="#">Каталог</a></li>
+        <li><a href="/catalog">Каталог</a></li>
         <li><a href="/about">О нас</a></li>
         <li><a href="/contacts">Контакты</a></li>
       </ul>
@@ -156,41 +155,23 @@
   <section class="product-details">
     <div class="product-image">
       <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product" id="productImg">
-      <div>
-        <img style="height: 50px;width: 50px; cursor: pointer;" src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product 1" onclick="changeImage('https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg')">
-        <img style="height: 50px;width: 50px;cursor: pointer;" src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_back_white_250.jpg" alt="Product 2" onclick="changeImage('https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_back_white_250.jpg')">
-        <img style="height: 50px;width: 50px;cursor: pointer;" src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_back_white_250.jpg" alt="Product 2" onclick="changeImage('https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_back_white_250.jpg')">
+      <div id="addImages">
+        
       </div>
     </div>
     <div class="product-info">
-      <h2>Майка с логотипом</h2>
-      <p class="price">Цена: $19.99</p>
-      <p>Описание: Классическая футболка с логотипом. Идеально подходит для повседневного ношения.</p>
-      <a href="#" class="btn">Добавить в корзину</a>
+      <h2 id="product-name">Майка с логотипом</h2>
+      <p class="price">Цена: $<span id="product-price">19.99</span></p>
+      <p id="about">Описание: </p>
+      <a id="cart-button" class="btn">Добавить в корзину</a>
     </div>
   </section>
 
   <section class="interest-section">
     <h3>Вам может быть интересно</h3>
     <div class="product-blocks">
-      <div class="product-block">
-        <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product">
-      </div>
-      <div class="product-block">
-        <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product">
-      </div>
-      <div class="product-block">
-        <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product">
-      </div>
-      <div class="product-block">
-        <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product">
-      </div>
-      <div class="product-block">
-        <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product">
-      </div>
-      <div class="product-block">
-        <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product">
-      </div>
+      
+      
     </div>
   </section>
 
@@ -206,3 +187,115 @@
 </body>
 
 </html>
+
+<script>
+
+    const fillSuggestions = async(cat, id) => {
+
+        const productBlocks = document.querySelector(".product-blocks")
+
+        const res = await fetch(`/products/${cat}`, {
+        method: 'POST',
+        headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            // body: JSON.stringify({ id: 78912 })
+        })
+
+        const {products} = await res.json()
+
+        for (let i = 0 ;i < products.length; ++i) {
+
+            if (products[i].id === Number(id)) continue
+
+            productBlocks.innerHTML += `
+            <div style="cursor:pointer" class="product-block" onclick="goToProduct(${products[i].id}, '${cat}')">
+                <img src="/images/products/${products[i].image}" alt="Product">
+            </div>`
+
+
+        }
+
+    }
+</script>
+
+<script>
+    const goToProduct = (id, cat) => {
+
+        window.location = `/product/${cat}/${id}`
+    }
+</script>
+
+<script>
+
+    const addToCart = (id) => () => {
+
+        console.log('adding to card ' + id);
+    }
+
+</script>
+
+
+<script>
+
+    const requestProduct = async () => {
+        const splitted = location.pathname.split('/')
+
+        const cat = splitted[2]
+        const id = splitted[3]
+
+
+        const res = await fetch(`/product/${cat}/${id}`, {
+        method: 'POST',
+        headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            // body: JSON.stringify({ id: 78912 })
+        })
+
+        const {product} = await res.json()
+
+        const mainImage = document.querySelector('#productImg')
+        mainImage.src = `/images/products/${product.image}`
+
+        console.log(product);
+
+        if (product.addImages) {
+
+            const addImagesBlock = document.querySelector("#addImages")
+
+            addImagesBlock.innerHTML += `<img style="height: 50px;width: 50px; cursor: pointer; " src="/images/products/${product.image}" alt="Product 1" onclick="changeImage('/images/products/${product.image}')">`
+            
+
+            product.addImages.map(i => {
+
+                addImagesBlock.innerHTML += `<img style="height: 50px;width: 50px; cursor: pointer;margin-left:5px;" src="/images/products/${i}" alt="Product 1" onclick="changeImage('/images/products/${i}')">`
+
+
+            })
+        }
+
+        const aboutBlock = document.querySelector("#about")
+
+
+        aboutBlock.textContent = `Описание: ${product.about}`
+
+        const productName = document.querySelector("#product-name")
+
+        productName.textContent = product.name
+
+        const productPrice = document.querySelector("#product-price")
+        productPrice.textContent = product.price 
+
+        const cartButton = document.querySelector("#cart-button")
+
+        cartButton.onclick = addToCart(id)
+
+        await fillSuggestions(cat, id)
+    }
+
+    requestProduct()
+
+</script>

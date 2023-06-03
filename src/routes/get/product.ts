@@ -1,10 +1,9 @@
 import { Router } from "express"
-import {readFile} from 'fs/promises'
 import {resolve} from 'path'
-import {dbPath, pagesPath} from '../../config'
+import {pagesPath} from '../../config'
 
 
-const router = Router().get('/product/:cat/:id', async (req, res) => {
+const router = Router().get('/product/:cat/:id', (req, res) => {
 
 
     const {cat, id} = req.params

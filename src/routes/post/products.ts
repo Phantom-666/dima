@@ -11,5 +11,6 @@ module.exports = Router().post('/products/:p', async(req, res) => {
     const txt = await readFile(resolve(dbPath, p + ".json"), 'utf-8')
     const products = await JSON.parse(txt)
 
+
     res.send({products})
 })
