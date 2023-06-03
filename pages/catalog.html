@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог - Всемайки</title>
+  <style>
+    /* Reset default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Global styles */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    header {
+      background: #f7f7f7;
+      padding: 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul li {
+      margin: 10px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .catalog {
+      padding: 40px;
+      display: flex;
+    }
+
+    .categories {
+      flex-basis: 25%;
+      padding-right: 20px;
+    }
+
+    .categories h2 {
+      margin-bottom: 10px;
+    }
+
+    .categories ul {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .categories ul li {
+      margin-bottom: 10px;
+    }
+
+    .categories ul li a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .categories ul li a:hover {
+      background: #666;
+    }
+
+    .products {
+      flex-basis: 75%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .products h2 {
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .product {
+      text-align: center;
+      margin-bottom: 40px;
+      flex-basis: 25%;
+      padding: 0 10px;
+    }
+
+    .product img:hover {
+      cursor: pointer;
+    }
+
+    .product h3:hover {
+      cursor: pointer;
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .product h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #666;
+    }
+
+    footer {
+      background: #f7f7f7;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="#">Каталог</a></li>
+        <li><a href="/about">О нас</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="catalog">
+    <div class="categories">
+      <h2>Категории</h2>
+      <ul>
+        <li><a onclick="changeCategory('shirts')" class="btn">Футболки</a></li>
+        <li><a onclick="changeCategory('sweatshirts')" class="btn">Свитшоты</a></li>
+        <li><a onclick="changeCategory('hoodies')" class="btn">Худи</a></li>
+        <!-- Добавьте больше категорий по аналогии -->
+      </ul>
+    </div>
+    <div class="products">
+      <h2>Футболки</h2>
+      <div class="product">
+        <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product 1">
+        <h3>Майка с логотипом</h3>
+        <p class="price">Цена: $19.99</p>
+        <a href="#" class="btn">Добавить в корзину</a>
+      </div>
+      
+    </div>
+    
+  </section>
+  
+  <footer>
+    <p>© 2023 Всемайки. Все права защищены.</p>
+  </footer>
+</body>
+
+</html>
+<script>
+
+  let currentCategory = null
+
+  
+</script>
+
+<script>
+
+  const changeCategory = async (cat) => {
+
+    if (currentCategory === cat) return
+
+    currentCategory = cat
+
+    const res = await fetch(`/products/${cat}`, {
+      method: 'POST',
+      headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: 78912 })
+    })
+
+    const {products} = await res.json()
+
+
+    const productsBlock = document.querySelector('.products')
+    productsBlock.innerHTML = '<h2>Футболки</h2>'
+
+
+    products.map(p => {
+
+
+      let name = p.name
+      if (name.length > 15) {
+
+        name = name.slice(0, 12) + '...'
+      }
+
+      productsBlock.innerHTML +=`<div class="product">
+        <img onclick="goToProduct(${p.id}, '${currentCategory}')" src="/images/products/${p.image}" alt="Product">
+        <h3 onclick="goToProduct(${p.id}, '${currentCategory}')">${name}</h3>
+        <p class="price">Цена: $${p.price}</p>
+        <a onclick="addToCard(${p.id}, ${currentCategory})" href="#" class="btn">Добавить в корзину</a>
+      </div>`
+    })
+
+  }
+</script>
+
+
+<script>
+  const goToProduct = (id, cat) => {
+    window.location = `/product/${cat}/${id}`
+  }
+</script>
+
+<script>
+
+  const addToCard = (id) => {
+
+
+    
+  }
+</script>
+
+
+<script>
+  changeCategory("shirts")
+</script>

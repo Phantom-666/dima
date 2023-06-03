@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Всемайки - Футболка</title>
+  <style>
+    /* Reset default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Global styles */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    header {
+      background: #f7f7f7;
+      padding: 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul li {
+      margin: 10px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .product-details {
+      padding: 40px;
+      display: flex;
+      justify-content: center; /* Выравнивание по центру */
+    }
+
+    .product-image {
+      flex-basis: 50%;
+      padding-right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .product-image img {
+      width: 100%;
+      max-width: 300px; /* Уменьшенный размер изображения */
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .product-info {
+      flex-basis: 50%;
+    }
+
+    .product-info h2 {
+      margin-bottom: 20px;
+    }
+
+    .product-info p {
+      margin-bottom: 10px;
+    }
+
+    .product-info .price {
+      font-weight: bold;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #666;
+    }
+
+    .interest-section {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .interest-section h3 {
+      margin-bottom: 20px;
+    }
+
+    .interest-section .product-blocks {
+      display: flex;
+      justify-content: center;
+      /* gap: 10px; */
+    }
+
+    .interest-section .product-block {
+      /* width: 200px; */
+      background: #f7f7f7;
+      padding: 5px;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .interest-section .product-block img {
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .interest-section .product-block p {
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background: #f7f7f7;
+      padding: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="#">Каталог</a></li>
+        <li><a href="/about">О нас</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="product-details">
+    <div class="product-image">
+      <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product" id="productImg">
+      <div>
+        <img style="height: 50px;width: 50px; cursor: pointer;" src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product 1" onclick="changeImage('https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg')">
+        <img style="height: 50px;width: 50px;cursor: pointer;" src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_back_white_250.jpg" alt="Product 2" onclick="changeImage('https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_back_white_250.jpg')">
+        <img style="height: 50px;width: 50px;cursor: pointer;" src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_back_white_250.jpg" alt="Product 2" onclick="changeImage('https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_back_white_250.jpg')">
+      </div>
+    </div>
+    <div class="product-info">
+      <h2>Майка с логотипом</h2>
+      <p class="price">Цена: $19.99</p>
+      <p>Описание: Классическая футболка с логотипом. Идеально подходит для повседневного ношения.</p>
+      <a href="#" class="btn">Добавить в корзину</a>
+    </div>
+  </section>
+
+  <section class="interest-section">
+    <h3>Вам может быть интересно</h3>
+    <div class="product-blocks">
+      <div class="product-block">
+        <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product">
+      </div>
+      <div class="product-block">
+        <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product">
+      </div>
+      <div class="product-block">
+        <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product">
+      </div>
+      <div class="product-block">
+        <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product">
+      </div>
+      <div class="product-block">
+        <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product">
+      </div>
+      <div class="product-block">
+        <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product">
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2023 Всемайки. Все права защищены.</p>
+  </footer>
+
+  <script>
+    function changeImage(imageUrl) {
+      document.getElementById('productImg').src = imageUrl;
+    }
+  </script>
+</body>
+
+</html>
