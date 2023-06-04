@@ -1,12 +1,6 @@
 import express from 'express'
 import { PORT, stylesPath } from './config'
 
-// TODO: make cart
-// TODO: make order
-// TODO: upload high resolution images
-// TODO: make add to cart
-// TODO: generate icon
-
 const run = () => {
     const app = express()
     app.use(express.json())
@@ -18,7 +12,8 @@ const run = () => {
     require('./routes/get/catalog'),
     require('./routes/get/about'),
     require('./routes/get/contacts'),
-    require('./routes/get/product'))
+    require('./routes/get/product'),
+    require('./routes/get/cart'))
 
     app.use('/', 
     require('./routes/post/products'),

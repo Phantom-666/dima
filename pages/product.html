@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Всемайки - Футболка</title>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <style>
     /* Reset default styles */
     * {
@@ -148,13 +149,14 @@
         <li><a href="/catalog">Каталог</a></li>
         <li><a href="/about">О нас</a></li>
         <li><a href="/contacts">Контакты</a></li>
+        <li><a href="/cart">Корзина</a></li>
       </ul>
     </nav>
   </header>
 
   <section class="product-details">
     <div class="product-image">
-      <img src="https://storage.vsemayki.ru/images/0/3/3259/3259803/previews/people_16_manshortfull_front_white_250.jpg" alt="Product" id="productImg">
+      <img src="" alt="Product" id="productImg">
       <div id="addImages">
         
       </div>
@@ -229,9 +231,23 @@
 
 <script>
 
-    const addToCart = (id) => () => {
+    const addToCart = (product) => () => {
+      const cart = localStorage.getItem('cart') 
 
-        console.log('adding to card ' + id);
+      if (cart) {
+
+        const last = JSON.parse(cart)
+        const newCart = [product]
+        
+        last.map(p => newCart.push(p))
+        
+
+        localStorage.setItem('cart', JSON.stringify(newCart))
+      }
+      else {
+        localStorage.setItem('cart', JSON.stringify([product]))
+      }
+
     }
 
 </script>
@@ -258,7 +274,7 @@
         const {product} = await res.json()
 
         const mainImage = document.querySelector('#productImg')
-        mainImage.src = `/images/products/${product.image}`
+        mainImage.src = `/images/products/high/${product.image}`
 
         console.log(product);
 
@@ -266,7 +282,7 @@
 
             const addImagesBlock = document.querySelector("#addImages")
 
-            addImagesBlock.innerHTML += `<img style="height: 50px;width: 50px; cursor: pointer; " src="/images/products/${product.image}" alt="Product 1" onclick="changeImage('/images/products/${product.image}')">`
+            addImagesBlock.innerHTML += `<img style="height: 50px;width: 50px; cursor: pointer; " src="/images/products/high/${product.image}" alt="Product 1" onclick="changeImage('/images/products/high/${product.image}')">`
             
 
             product.addImages.map(i => {
@@ -291,7 +307,7 @@
 
         const cartButton = document.querySelector("#cart-button")
 
-        cartButton.onclick = addToCart(id)
+        cartButton.onclick = addToCart(product)
 
         await fillSuggestions(cat, id)
     }
