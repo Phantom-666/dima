@@ -1,317 +1,306 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Всемайки - Футболка</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <style>
+      /* Reset default styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Всемайки - Футболка</title>
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-  <style>
-    /* Reset default styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+      /* Global styles */
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+        color: #333;
+      }
 
-    /* Global styles */
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.5;
-      color: #333;
-    }
+      header {
+        background: #f7f7f7;
+        padding: 20px;
+      }
 
-    header {
-      background: #f7f7f7;
-      padding: 20px;
-    }
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+      }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-    }
+      nav ul li {
+        margin: 10px;
+      }
 
-    nav ul li {
-      margin: 10px;
-    }
+      nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+      }
 
-    nav ul li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
+      .product-details {
+        padding: 40px;
+        display: flex;
+        justify-content: center; /* Выравнивание по центру */
+      }
 
-    .product-details {
-      padding: 40px;
-      display: flex;
-      justify-content: center; /* Выравнивание по центру */
-    }
+      .product-image {
+        flex-basis: 50%;
+        padding-right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-    .product-image {
-      flex-basis: 50%;
-      padding-right: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+      .product-image img {
+        width: 100%;
+        max-width: 300px; /* Уменьшенный размер изображения */
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
 
-    .product-image img {
-      width: 100%;
-      max-width: 300px; /* Уменьшенный размер изображения */
-      height: auto;
-      border-radius: 5px;
-      margin-bottom: 20px;
-    }
+      .product-info {
+        flex-basis: 50%;
+      }
 
-    .product-info {
-      flex-basis: 50%;
-    }
+      .product-info h2 {
+        margin-bottom: 20px;
+      }
 
-    .product-info h2 {
-      margin-bottom: 20px;
-    }
+      .product-info p {
+        margin-bottom: 10px;
+      }
 
-    .product-info p {
-      margin-bottom: 10px;
-    }
+      .product-info .price {
+        font-weight: bold;
+      }
 
-    .product-info .price {
-      font-weight: bold;
-    }
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #333;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: 14px;
+        cursor: pointer;
+      }
 
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #333;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s ease;
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-      font-size: 14px;
-      cursor: pointer;
-    }
+      .btn:hover {
+        background: #666;
+      }
 
-    .btn:hover {
-      background: #666;
-    }
+      .interest-section {
+        margin-top: 40px;
+        text-align: center;
+      }
 
-    .interest-section {
-      margin-top: 40px;
-      text-align: center;
-    }
+      .interest-section h3 {
+        margin-bottom: 20px;
+      }
 
-    .interest-section h3 {
-      margin-bottom: 20px;
-    }
+      .interest-section .product-blocks {
+        display: flex;
+        justify-content: center;
+        /* gap: 10px; */
+      }
 
-    .interest-section .product-blocks {
-      display: flex;
-      justify-content: center;
-      /* gap: 10px; */
-    }
+      .interest-section .product-block {
+        /* width: 200px; */
+        background: #f7f7f7;
+        padding: 5px;
+        border-radius: 5px;
+        text-align: center;
+      }
 
-    .interest-section .product-block {
-      /* width: 200px; */
-      background: #f7f7f7;
-      padding: 5px;
-      border-radius: 5px;
-      text-align: center;
-    }
+      .interest-section .product-block img {
+        width: 100%;
+        max-width: 150px;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
 
-    .interest-section .product-block img {
-      width: 100%;
-      max-width: 150px;
-      height: auto;
-      border-radius: 5px;
-      margin-bottom: 10px;
-    }
+      .interest-section .product-block p {
+        margin-bottom: 10px;
+      }
 
-    .interest-section .product-block p {
-      margin-bottom: 10px;
-    }
+      footer {
+        background: #f7f7f7;
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
 
-    footer {
-      background: #f7f7f7;
-      padding: 20px;
-      text-align: center;
-    }
-  </style>
-</head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Главная</a></li>
+          <li><a href="/catalog">Каталог</a></li>
+          <li><a href="/about">О нас</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+          <li><a href="/cart">Корзина</a></li>
+          <li><a href="/login">Войти</a></li>
+        </ul>
+      </nav>
+    </header>
 
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="/">Главная</a></li>
-        <li><a href="/catalog">Каталог</a></li>
-        <li><a href="/about">О нас</a></li>
-        <li><a href="/contacts">Контакты</a></li>
-        <li><a href="/cart">Корзина</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section class="product-details">
-    <div class="product-image">
-      <img src="" alt="Product" id="productImg">
-      <div id="addImages">
-        
+    <section class="product-details">
+      <div class="product-image">
+        <img src="" alt="Product" id="productImg" />
+        <div id="addImages"></div>
       </div>
-    </div>
-    <div class="product-info">
-      <h2 id="product-name">Майка с логотипом</h2>
-      <p class="price">Цена: $<span id="product-price">19.99</span></p>
-      <p id="about">Описание: </p>
-      <a id="cart-button" class="btn">Добавить в корзину</a>
-    </div>
-  </section>
+      <div class="product-info">
+        <h2 id="product-name">Майка с логотипом</h2>
+        <p class="price">Цена: $<span id="product-price">19.99</span></p>
+        <p id="about">Описание:</p>
+        <a id="cart-button" class="btn">Добавить в корзину</a>
+      </div>
+    </section>
 
-  <section class="interest-section">
-    <h3>Вам может быть интересно</h3>
-    <div class="product-blocks">
-      
-      
-    </div>
-  </section>
+    <section class="interest-section">
+      <h3>Вам может быть интересно</h3>
+      <div class="product-blocks"></div>
+    </section>
 
-  <footer>
-    <p>© 2023 Всемайки. Все права защищены.</p>
-  </footer>
+    <footer>
+      <p>© 2023 Всемайки. Все права защищены.</p>
+    </footer>
 
-  <script>
-    function changeImage(imageUrl) {
-      document.getElementById('productImg').src = imageUrl;
-    }
-  </script>
-</body>
-
+    <script>
+      function changeImage(imageUrl) {
+        document.getElementById('productImg').src = imageUrl
+      }
+    </script>
+  </body>
 </html>
 
 <script>
+  const fillSuggestions = async (cat, id) => {
+    const productBlocks = document.querySelector('.product-blocks')
 
-    const fillSuggestions = async(cat, id) => {
+    const res = await fetch(`/products/${cat}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      // body: JSON.stringify({ id: 78912 })
+    })
 
-        const productBlocks = document.querySelector(".product-blocks")
+    const { products } = await res.json()
 
-        const res = await fetch(`/products/${cat}`, {
-        method: 'POST',
-        headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            // body: JSON.stringify({ id: 78912 })
-        })
+    for (let i = 0; i < products.length; ++i) {
+      if (products[i].id === Number(id)) continue
 
-        const {products} = await res.json()
-
-        for (let i = 0 ;i < products.length; ++i) {
-
-            if (products[i].id === Number(id)) continue
-
-            productBlocks.innerHTML += `
+      productBlocks.innerHTML += `
             <div style="cursor:pointer" class="product-block" onclick="goToProduct(${products[i].id}, '${cat}')">
                 <img src="/images/products/${products[i].image}" alt="Product">
             </div>`
-
-
-        }
-
     }
+  }
 </script>
 
 <script>
-    const goToProduct = (id, cat) => {
-
-        window.location = `/product/${cat}/${id}`
-    }
+  const goToProduct = (id, cat) => {
+    window.location = `/product/${cat}/${id}`
+  }
 </script>
 
 <script>
+  const addToCart = (product) => () => {
+    const cart = localStorage.getItem('cart')
 
-    const addToCart = (product) => () => {
-      const cart = localStorage.getItem('cart') 
+    if (cart) {
+      const last = JSON.parse(cart)
+      const newCart = [product]
 
-      if (cart) {
+      last.map((p) => newCart.push(p))
 
-        const last = JSON.parse(cart)
-        const newCart = [product]
-        
-        last.map(p => newCart.push(p))
-        
+      localStorage.setItem('cart', JSON.stringify(newCart))
+    } else {
+      localStorage.setItem('cart', JSON.stringify([product]))
+    }
+  }
+</script>
 
-        localStorage.setItem('cart', JSON.stringify(newCart))
+<script>
+  const requestProduct = async () => {
+    const splitted = location.pathname.split('/')
+
+    const cat = splitted[2]
+    const id = splitted[3]
+
+    const res = await fetch(`/product/${cat}/${id}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      // body: JSON.stringify({ id: 78912 })
+    })
+
+    const { product } = await res.json()
+
+    const mainImage = document.querySelector('#productImg')
+    mainImage.src = `/images/products/high/${product.image}`
+
+    console.log(product)
+
+    if (product.addImages) {
+      const addImagesBlock = document.querySelector('#addImages')
+
+      addImagesBlock.innerHTML += `<img style="height: 50px;width: 50px; cursor: pointer; " src="/images/products/high/${product.image}" alt="Product 1" onclick="changeImage('/images/products/high/${product.image}')">`
+
+      product.addImages.map((i) => {
+        addImagesBlock.innerHTML += `<img style="height: 50px;width: 50px; cursor: pointer;margin-left:5px;" src="/images/products/${i}" alt="Product 1" onclick="changeImage('/images/products/${i}')">`
+      })
+    }
+
+    const aboutBlock = document.querySelector('#about')
+
+    aboutBlock.textContent = `Описание: ${product.about}`
+
+    const productName = document.querySelector('#product-name')
+
+    productName.textContent = product.name
+
+    const productPrice = document.querySelector('#product-price')
+    productPrice.textContent = product.price
+
+    const cartButton = document.querySelector('#cart-button')
+
+    cartButton.onclick = addToCart(product)
+
+    await fillSuggestions(cat, id)
+  }
+
+  requestProduct()
+</script>
+
+<script>
+  const checkUsername = () => {
+    const loginButton = document.querySelector('a[href="/login"]')
+    const username = localStorage.getItem('username')
+
+    if (username) {
+      loginButton.textContent = 'Выйти'
+      loginButton.onclick = () => {
+        localStorage.removeItem('username', null)
+
+        window.location = '/'
       }
-      else {
-        localStorage.setItem('cart', JSON.stringify([product]))
-      }
-
     }
+  }
 
-</script>
-
-
-<script>
-
-    const requestProduct = async () => {
-        const splitted = location.pathname.split('/')
-
-        const cat = splitted[2]
-        const id = splitted[3]
-
-
-        const res = await fetch(`/product/${cat}/${id}`, {
-        method: 'POST',
-        headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            // body: JSON.stringify({ id: 78912 })
-        })
-
-        const {product} = await res.json()
-
-        const mainImage = document.querySelector('#productImg')
-        mainImage.src = `/images/products/high/${product.image}`
-
-        console.log(product);
-
-        if (product.addImages) {
-
-            const addImagesBlock = document.querySelector("#addImages")
-
-            addImagesBlock.innerHTML += `<img style="height: 50px;width: 50px; cursor: pointer; " src="/images/products/high/${product.image}" alt="Product 1" onclick="changeImage('/images/products/high/${product.image}')">`
-            
-
-            product.addImages.map(i => {
-
-                addImagesBlock.innerHTML += `<img style="height: 50px;width: 50px; cursor: pointer;margin-left:5px;" src="/images/products/${i}" alt="Product 1" onclick="changeImage('/images/products/${i}')">`
-
-
-            })
-        }
-
-        const aboutBlock = document.querySelector("#about")
-
-
-        aboutBlock.textContent = `Описание: ${product.about}`
-
-        const productName = document.querySelector("#product-name")
-
-        productName.textContent = product.name
-
-        const productPrice = document.querySelector("#product-price")
-        productPrice.textContent = product.price 
-
-        const cartButton = document.querySelector("#cart-button")
-
-        cartButton.onclick = addToCart(product)
-
-        await fillSuggestions(cat, id)
-    }
-
-    requestProduct()
-
+  checkUsername()
 </script>

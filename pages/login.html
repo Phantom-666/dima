@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Регистрация</title>
+    <style>
+      /* Reset default styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Global styles */
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+        color: #333;
+      }
+
+      header {
+        background: #f7f7f7;
+        padding: 20px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+      }
+
+      nav ul li {
+        margin: 10px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .registration-form {
+        max-width: 400px;
+        margin: 40px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      .registration-form h2 {
+        margin-bottom: 20px;
+      }
+
+      .registration-form input[type='text'],
+      .registration-form input[type='password'] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .registration-form button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background: #333;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .registration-form button:hover {
+        background: #666;
+      }
+
+      footer {
+        background: #f7f7f7;
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Главная</a></li>
+          <li><a href="/catalog">Каталог</a></li>
+          <li><a href="/about">О нас</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+          <li><a href="/cart">Корзина</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="registration-form">
+      <h2>Войти</h2>
+      <span action="/register" method="POST">
+        <input
+          id="username"
+          type="text"
+          name="username"
+          placeholder="Имя пользователя"
+          required
+        />
+        <input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="Пароль"
+          required
+        />
+        <span style="color: red" id="error" style="visibility: hidden"></span>
+        <button onclick="login()">Войти</button>
+        <button style="margin-top: 5px" onclick="goTo('/reg')">
+          Зарегистрироваться
+        </button>
+      </span>
+    </section>
+  </body>
+</html>
+
+<script>
+  const goTo = (path) => {
+    window.location = path
+  }
+</script>
+
+<script>
+  const login = async () => {
+    const username = document.querySelector('#username')
+    const password = document.querySelector('#password')
+
+    const res = await fetch(`/login`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: username.value,
+        password: password.value,
+      }),
+    })
+
+    const r = await res.json()
+
+    if (r.status === 'error') {
+      error.textContent = r.error
+      error.style.visibility = 'visible'
+    } else if (r.status === 'ok') {
+      localStorage.setItem('username', username)
+      window.location = '/'
+    }
+  }
+</script>

@@ -1,115 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <title>О нас</title>
+    <style>
+      /* Reset default styles */
+      /* Reset default styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-  <title>О нас</title>
-  <style>
-    /* Reset default styles */
-/* Reset default styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+      /* Global styles */
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+        color: #333;
+      }
 
-/* Global styles */
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.5;
-  color: #333;
-}
+      header {
+        background: #f7f7f7;
+        padding: 20px;
+      }
 
-header {
-  background: #f7f7f7;
-  padding: 20px;
-}
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+      }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-}
+      nav ul li {
+        margin: 10px;
+      }
 
-nav ul li {
-  margin: 10px;
-}
+      nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+      }
 
-nav ul li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-}
+      .about {
+        padding: 40px;
+        text-align: center;
+      }
 
-.about {
-  padding: 40px;
-  text-align: center;
-}
+      .about h2 {
+        margin-bottom: 20px;
+        color: #333;
+        font-size: 28px;
+      }
 
-.about h2 {
-  margin-bottom: 20px;
-  color: #333;
-  font-size: 28px;
-}
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-}
+      .about p {
+        margin-bottom: 20px;
+        color: #666;
+        font-size: 18px;
+      }
 
-.about p {
-  margin-bottom: 20px;
-  color: #666;
-  font-size: 18px;
-}
+      .about-image {
+        max-width: 300px;
+        border-radius: 5%;
+        margin-bottom: 20px;
+      }
 
-.about-image {
-  max-width: 300px;
-  border-radius: 5%;
-  margin-bottom: 20px;
-}
+      footer {
+        background: #f7f7f7;
+        padding: 20px;
+        text-align: center;
+        color: #666;
+        font-size: 14px;
+      }
+    </style>
+  </head>
 
-footer {
-  background: #f7f7f7;
-  padding: 20px;
-  text-align: center;
-  color: #666;
-  font-size: 14px;
-}
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Главная</a></li>
+          <li><a href="/catalog">Каталог</a></li>
+          <li><a href="#">О нас</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+          <li><a href="/cart">Корзина</a></li>
+          <li><a href="/login">Войти</a></li>
+        </ul>
+      </nav>
+    </header>
 
+    <section class="about">
+      <div class="container">
+        <h2>О нас</h2>
+        <img
+          src="https://www.telegraph.co.uk/content/dam/technology/2022/11/22/TELEMMGLPICT000316765294_trans_NvBQzQNjv4BqBREw2FrVJMoxCNvALeYBcdkM9MM8VM3G1BxlGUO4L8Q.jpeg"
+          alt="Команда"
+          class="about-image"
+        />
+        <p>
+          Мы команда энтузиастов, которые страстно любят футболки! Наша цель -
+          предложить вам самые креативные и уникальные дизайны на футболках. Мы
+          стремимся создавать продукты высокого качества с использованием лучших
+          материалов.
+        </p>
+        <img
+          src="https://x7d4c5z5.stackpathcdn.com/wp-content/uploads/tc/2022/11/WhatsApp-Image-2022-11-04-at-3.05.49-PM.jpeg"
+          alt="Продукция"
+          class="about-image"
+        />
+        <p>
+          Мы верим, что футболка может быть не только одеждой, но и способом
+          самовыражения. У нас вы найдете широкий ассортимент футболок с
+          различными дизайнами - от юмористических и графических принтов до
+          патриотических и искусственных изображений.
+        </p>
+        <p>
+          Наша команда всегда готова помочь вам найти футболку, которая подходит
+          именно вам. Мы стремимся обеспечить отличный сервис и полное
+          удовлетворение клиентов. Спасибо, что выбрали нас!
+        </p>
+      </div>
+    </section>
 
-  </style>
-</head>
-
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="/">Главная</a></li>
-        <li><a href="/catalog">Каталог</a></li>
-        <li><a href="#">О нас</a></li>
-        <li><a href="/contacts">Контакты</a></li>
-        <li><a href="/cart">Корзина</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section class="about">
-    <div class="container">
-      <h2>О нас</h2>
-      <img src="https://www.telegraph.co.uk/content/dam/technology/2022/11/22/TELEMMGLPICT000316765294_trans_NvBQzQNjv4BqBREw2FrVJMoxCNvALeYBcdkM9MM8VM3G1BxlGUO4L8Q.jpeg" alt="Команда" class="about-image">
-      <p>Мы команда энтузиастов, которые страстно любят футболки! Наша цель - предложить вам самые креативные и уникальные дизайны на футболках. Мы стремимся создавать продукты высокого качества с использованием лучших материалов.</p>
-      <img src="https://x7d4c5z5.stackpathcdn.com/wp-content/uploads/tc/2022/11/WhatsApp-Image-2022-11-04-at-3.05.49-PM.jpeg" alt="Продукция" class="about-image">
-      <p>Мы верим, что футболка может быть не только одеждой, но и способом самовыражения. У нас вы найдете широкий ассортимент футболок с различными дизайнами - от юмористических и графических принтов до патриотических и искусственных изображений.</p>
-      <p>Наша команда всегда готова помочь вам найти футболку, которая подходит именно вам. Мы стремимся обеспечить отличный сервис и полное удовлетворение клиентов. Спасибо, что выбрали нас!</p>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2023 ВсеМайки. Все права защищены.</p>
-  </footer>
-</body>
-
+    <footer>
+      <p>&copy; 2023 ВсеМайки. Все права защищены.</p>
+    </footer>
+  </body>
 </html>
+<script>
+  const checkUsername = () => {
+    const loginButton = document.querySelector('a[href="/login"]')
+    const username = localStorage.getItem('username')
+
+    if (username) {
+      loginButton.textContent = 'Выйти'
+      loginButton.onclick = () => {
+        localStorage.removeItem('username', null)
+
+        window.location = '/'
+      }
+    }
+  }
+
+  checkUsername()
+</script>

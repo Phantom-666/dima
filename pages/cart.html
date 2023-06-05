@@ -1,220 +1,226 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Всемайки - Корзина</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <style>
+      /* Reset default styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Всемайки - Корзина</title>
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-  <style>
-    /* Reset default styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+      /* Global styles */
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+        color: #333;
+      }
 
-    /* Global styles */
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.5;
-      color: #333;
-    }
+      header {
+        background: #f7f7f7;
+        padding: 20px;
+      }
 
-    header {
-      background: #f7f7f7;
-      padding: 20px;
-    }
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+      }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-    }
+      nav ul li {
+        margin: 10px;
+      }
 
-    nav ul li {
-      margin: 10px;
-    }
+      nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+      }
 
-    nav ul li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
+      .cart-items {
+        padding: 40px;
+        text-align: center;
+        margin: 0 auto; /* Добавлено для выравнивания по центру */
+        max-width: 600px; /* Добавлено для ограничения ширины контейнера */
+      }
 
-    .cart-items {
-      padding: 40px;
-      text-align: center;
-      margin: 0 auto; /* Добавлено для выравнивания по центру */
-      max-width: 600px; /* Добавлено для ограничения ширины контейнера */
-    }
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
 
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
+      .cart-item img {
+        width: 100px;
+        height: auto;
+        border-radius: 5px;
+      }
 
-    .cart-item img {
-      width: 100px;
-      height: auto;
-      border-radius: 5px;
-    }
+      .cart-item-info {
+        flex-grow: 1;
+        margin-left: 20px;
+        text-align: left;
+      }
 
-    .cart-item-info {
-      flex-grow: 1;
-      margin-left: 20px;
-      text-align: left;
-    }
+      .cart-item-info h3 {
+        margin-bottom: 5px;
+      }
 
-    .cart-item-info h3 {
-      margin-bottom: 5px;
-    }
+      .cart-item-info p {
+        margin-bottom: 10px;
+      }
 
-    .cart-item-info p {
-      margin-bottom: 10px;
-    }
+      .cart-item-price {
+        font-weight: bold;
+      }
 
-    .cart-item-price {
-      font-weight: bold;
-    }
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #333;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: 14px;
+        cursor: pointer;
+      }
 
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #333;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background 0.3s ease;
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-      font-size: 14px;
-      cursor: pointer;
-    }
+      .btn:hover {
+        background: #666;
+      }
 
-    .btn:hover {
-      background: #666;
-    }
+      .btn[disabled] {
+        background: #ccc;
+        cursor: not-allowed;
+      }
 
-    .btn[disabled] {
-      background: #ccc;
-      cursor: not-allowed;
-    }
+      footer {
+        background: #f7f7f7;
+        padding: 20px;
+        text-align: center;
+      }
 
-    footer {
-      background: #f7f7f7;
-      padding: 20px;
-      text-align: center;
-    }
+      .cart-items h2 {
+        margin-bottom: 30px;
+      }
+    </style>
+    <script>
+      const username = localStorage.getItem('username')
 
-    .cart-items h2  {
-      margin-bottom: 30px;
-    }
-  </style>
-</head>
+      if (!username) window.location = '/login'
+    </script>
+  </head>
 
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="/">Главная</a></li>
-        <li><a href="/catalog">Каталог</a></li>
-        <li><a href="/about">О нас</a></li>
-        <li><a href="/contacts">Контакты</a></li>
-        <li><a href="/cart">Корзина</a></li>
-      </ul>
-    </nav>
-  </header>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Главная</a></li>
+          <li><a href="/catalog">Каталог</a></li>
+          <li><a href="/about">О нас</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+          <li><a href="/cart">Корзина</a></li>
+          <li><a href="/login">Войти</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <section class="cart-items">
-    <h2>Корзина</h2>
-    <span id="cart">
-    </span>
-   
-    <a onclick="makeOrder()" id="checkout-btn" class="btn">Оформить заказ</a>
-  </section>
+    <section class="cart-items">
+      <h2>Корзина</h2>
+      <span id="cart"> </span>
 
-  <footer>
-    <p>© 2023 Всемайки. Все права защищены.</p>
-  </footer>
+      <a onclick="makeOrder()" id="checkout-btn" class="btn">Оформить заказ</a>
+    </section>
 
-  <script>
-
-    const processCart = () => {
-        const cart = localStorage.getItem('cart');
+    <script>
+      const processCart = () => {
+        const cart = localStorage.getItem('cart')
         const checkoutBtn = document.getElementById('checkout-btn')
 
-        const cartBlock = document.querySelector("#cart")
+        const cartBlock = document.querySelector('#cart')
 
-        checkoutBtn.style.visibility = "hidden";
+        checkoutBtn.style.visibility = 'hidden'
 
         if (cart) {
+          const products = JSON.parse(cart)
 
-            const products = JSON.parse(cart)
+          if (products.length === 0) return
 
-            if (products.length === 0) return 
+          checkoutBtn.style.visibility = 'visible'
+          const sorted = {}
 
-            checkoutBtn.style.visibility = "visible";
-            const sorted = {}
+          products.map((p) => {
+            const isHere = sorted[p.id]
 
-            
+            if (isHere) {
+              sorted[p.id].amount += 1
+            } else {
+              sorted[p.id] = {
+                name: p.name,
+                image: p.image,
+                price: p.price,
+                amount: 1,
+              }
+            }
+          })
 
-            products.map(p => {
-
-                const isHere = sorted[p.id]
-
-                if (isHere) {
-                    sorted[p.id].amount += 1
-                }
-                else {
-                    sorted[p.id] = {name : p.name, image: p.image, price : p.price, amount : 1}
-                }
-                
-
-            })
-
-
-            Object.keys(sorted).map(k => {
-
-                const p = sorted[k]
-                cartBlock.innerHTML += `
+          Object.keys(sorted).map((k) => {
+            const p = sorted[k]
+            cartBlock.innerHTML += `
                         <div class="cart-item">
-                            <img src="/images/products/${p.image}" alt="Product">
+                            <img src="/images/products/${
+                              p.image
+                            }" alt="Product">
                             <div class="cart-item-info">
                             <h3>${p.name}</h3>
                             <p>Цена: ${p.price}</p>
                             <p>Количество: ${p.amount}</p>
                             </div>
-                            <p class="cart-item-price">$${p.price * p.amount }</p>
+                            <p class="cart-item-price">$${
+                              p.price * p.amount
+                            }</p>
                         </div>`
-
-
-            })
+          })
         }
+      }
+    </script>
 
-    }
-  </script>
-
-  <script>
-    processCart()
-  </script>
-</body>
-
+    <script>
+      processCart()
+    </script>
+  </body>
 </html>
 
+<script>
+  const makeOrder = () => {
+    localStorage.setItem('cart', JSON.stringify([]))
+
+    window.location = '/cart'
+  }
+</script>
 
 <script>
+  const checkUsername = () => {
+    const loginButton = document.querySelector('a[href="/login"]')
+    const username = localStorage.getItem('username')
 
+    if (username) {
+      loginButton.textContent = 'Выйти'
+      loginButton.onclick = () => {
+        localStorage.removeItem('username', null)
 
-    const makeOrder = () => {
-
-        localStorage.setItem('cart', JSON.stringify([]))
-
-        window.location = '/cart'
-
-
-
+        window.location = '/'
+      }
     }
+  }
+
+  checkUsername()
 </script>
