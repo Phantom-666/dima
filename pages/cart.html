@@ -141,13 +141,13 @@
     </section>
 
     <script>
+      const checkoutBtn = document.getElementById('checkout-btn')
+      checkoutBtn.style.visibility = 'hidden'
+
       const processCart = () => {
         const cart = localStorage.getItem('cart')
-        const checkoutBtn = document.getElementById('checkout-btn')
 
         const cartBlock = document.querySelector('#cart')
-
-        checkoutBtn.style.visibility = 'hidden'
 
         if (cart) {
           const products = JSON.parse(cart)
@@ -195,11 +195,8 @@
     <script>
       const processCustom = () => {
         const cart = localStorage.getItem('custom')
-        const checkoutBtn = document.getElementById('checkout-btn')
 
         const cartBlock = document.querySelector('#cart')
-
-        checkoutBtn.style.visibility = 'hidden'
 
         if (cart) {
           const products = JSON.parse(cart)
