@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Каталог - Всемайки</title>
+    <title>Каталог</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
     <style>
       /* Reset default styles */
@@ -198,7 +198,7 @@
     </section>
 
     <footer>
-      <p>© 2023 Всемайки. Все права защищены.</p>
+      <p>© 2023 DIIICA. Все права защищены.</p>
     </footer>
   </body>
 </html>
@@ -235,7 +235,7 @@
       productsBlock.innerHTML += `<div class="product">
         <img onclick="goToProduct(${p.id}, '${currentCategory}')" src="/images/products/${p.image}" alt="Product">
         <h3 onclick="goToProduct(${p.id}, '${currentCategory}')">${name}</h3>
-        <p class="price">Цена: $${p.price}</p>
+        <p class="price">Цена: ${p.price}₽</p>
         <a onclick="addToCart(${p.id}, '${p.name}', ${p.price}, '${p.image}')" class="btn">Добавить в корзину</a>
       </div>`
     })

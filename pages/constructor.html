@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Конструктор футболок</title>
+    <style>
+      /* Reset default styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Global styles */
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.5;
+        color: #333;
+      }
+
+      header {
+        background: #f7f7f7;
+        padding: 20px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+      }
+
+      nav ul li {
+        margin: 10px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .row {
+        display: flex;
+
+        margin-top: 2%;
+      }
+
+      .column {
+        flex: 1;
+        padding: 10px;
+      }
+
+      #tshirt-designer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+        background-color: #f1f1f1;
+        position: relative;
+      }
+
+      #tshirt-designer #tshirt {
+        width: 400px;
+        height: 450px;
+        background-color: white;
+        border-radius: 5px;
+        position: relative;
+      }
+
+      #tshirt-designer #tshirt-image {
+        content: '';
+        width: 380px;
+        height: 420px;
+        background-color: #ccc;
+        display: block;
+        margin: 10px;
+        border-radius: 5px;
+        background-image: url('/images/shirts/white.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+      }
+
+      .draggable-element {
+        position: absolute;
+        cursor: move;
+        transform: translate(-50%, -50%);
+      }
+
+      #tshirt-designer #tshirt .tshirt-image {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+      }
+
+      #text-editor {
+        margin-top: 10px;
+      }
+
+      #text-editor label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      #text-editor input[type='text'],
+      #text-editor select {
+        margin-bottom: 10px;
+      }
+
+      #text-editor input[type='file'] {
+        margin-bottom: 15px;
+      }
+
+      #image-controls {
+        margin-bottom: 10px;
+      }
+
+      #image-controls label {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      #image-controls input[type='range'] {
+        width: 150px;
+        vertical-align: middle;
+      }
+
+      footer {
+        background: #f7f7f7;
+        padding: 20px;
+        text-align: center;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .cube-container {
+        display: flex;
+        /* justify-content: center; */
+      }
+
+      .cube {
+        width: 30px;
+        height: 30px;
+        position: relative;
+        margin: 5px;
+        border: 1px solid black;
+      }
+
+      .cube:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      .white:before {
+        background-color: white;
+      }
+
+      .black:before {
+        background-color: black;
+      }
+
+      .blue:before {
+        background-color: blue;
+      }
+
+      .brown:before {
+        background-color: brown;
+      }
+    </style>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Главная</a></li>
+          <li><a href="/catalog">Каталог</a></li>
+          <li><a href="/about">О нас</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+          <li><a href="/cart">Корзина</a></li>
+          <li><a href="/login">Войти</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="row">
+      <section id="tshirt-designer" class="column">
+        <div id="tshirt">
+          <div id="tshirt-image"></div>
+        </div>
+      </section>
+
+      <section id="text-editor" class="column">
+        <label for="text">Текст:</label>
+        <input type="text" id="text" placeholder="Введите текст" />
+
+        <label for="text-color">Цвет текста:</label>
+        <input type="color" id="text-color" />
+
+        <label for="font-size">Размер текста:</label>
+        <select id="font-size">
+          <option value="12px">Маленький</option>
+          <option value="16px">Средний</option>
+          <option value="20px">Большой</option>
+        </select>
+
+        <button id="add-text-button">Добавить текст</button>
+
+        <label for="image-upload">Загрузить картинку:</label>
+        <input type="file" id="image-upload" accept="image/*" />
+        <h3>Выберите цвет футболки</h3>
+
+        <div class="cube-container">
+          <div class="cube white" onclick="changeShirtImage('white')"></div>
+          <div class="cube black" onclick="changeShirtImage('black')"></div>
+          <div class="cube blue" onclick="changeShirtImage('blue')"></div>
+          <div class="cube brown" onclick="changeShirtImage('brown')"></div>
+        </div>
+
+        <button style="padding: 10px" class="btn" onclick="order()">
+          Заказать
+        </button>
+      </section>
+
+      <section id="text-editor-2" class="column">
+        <!-- Второй блок с id="text-editor" -->
+      </section>
+    </div>
+
+    <script>
+      const designer = document.getElementById('tshirt-designer')
+      const tshirt = document.getElementById('tshirt')
+      const textInput = document.getElementById('text')
+      const textColorInput = document.getElementById('text-color')
+      const fontSizeInput = document.getElementById('font-size')
+      const addTextButton = document.getElementById('add-text-button')
+      const imageUploadInput = document.getElementById('image-upload')
+      //   const imageSizeInput = document.getElementById('image-size')
+
+      addTextButton.addEventListener('click', function () {
+        const text = textInput.value
+        const textColor = textColorInput.value
+        const fontSize = fontSizeInput.value
+
+        if (text.trim() !== '') {
+          const draggableText = document.createElement('div')
+          draggableText.classList.add('draggable-element')
+          draggableText.style.color = textColor
+          draggableText.style.fontSize = fontSize
+          draggableText.innerText = text
+
+          const imageControlsDiv = document.createElement('div')
+          imageControlsDiv.id = 'image-controls'
+
+          // Create the label element
+          const label = document.createElement('label')
+          label.textContent = 'Текст:'
+
+          // Create the button element
+          const button = document.createElement('button')
+          button.textContent = 'Удалить'
+          button.addEventListener('click', function () {
+            tshirt.removeChild(draggableText)
+            parentElement.removeChild(imageControlsDiv)
+          })
+
+          // Add the label, input, and button elements to the parent div
+          imageControlsDiv.appendChild(label)
+          imageControlsDiv.appendChild(button)
+
+          // Get the parent element where you want to append the image controls (e.g., text-editor section)
+          const parentElement = document.getElementById('text-editor-2')
+          parentElement.appendChild(imageControlsDiv)
+
+          draggableText.addEventListener('mousedown', function (event) {
+            const initialLeft = draggableText.offsetLeft
+            const initialTop = draggableText.offsetTop
+            const startX = event.clientX
+            const startY = event.clientY
+
+            function onMouseMove(event) {
+              const left = initialLeft + event.clientX - startX
+              const top = initialTop + event.clientY - startY
+
+              draggableText.style.left = `${left}px`
+              draggableText.style.top = `${top}px`
+            }
+
+            function onMouseUp() {
+              document.removeEventListener('mousemove', onMouseMove)
+              document.removeEventListener('mouseup', onMouseUp)
+            }
+
+            document.addEventListener('mousemove', onMouseMove)
+            document.addEventListener('mouseup', onMouseUp)
+          })
+
+          tshirt.appendChild(draggableText)
+        }
+
+        textInput.value = ''
+      })
+
+      imageUploadInput.addEventListener('change', function (event) {
+        const file = event.target.files[0]
+        const reader = new FileReader()
+
+        reader.onload = function (event) {
+          const imageUrl = event.target.result
+
+          const tshirtImage = document.createElement('div')
+          tshirtImage.classList.add('draggable-element', 'tshirt-image')
+          tshirtImage.style.backgroundImage = `url(${imageUrl})`
+          tshirt.appendChild(tshirtImage)
+
+          const imageControlsDiv = document.createElement('div')
+          imageControlsDiv.id = 'image-controls'
+
+          // Create the label element
+          const label = document.createElement('label')
+          label.setAttribute('for', 'image-size')
+          label.textContent = 'Размер картинки:'
+
+          // Create the input element
+          const input = document.createElement('input')
+          input.setAttribute('type', 'range')
+          input.setAttribute('min', '0.1')
+          input.setAttribute('max', '2')
+          input.setAttribute('step', '0.1')
+          input.setAttribute('value', '1')
+
+          const button = document.createElement('button')
+          button.textContent = 'Удалить'
+          button.classList.add('btn')
+          button.style.marginLeft = '5px'
+
+          button.addEventListener('click', function () {
+            // Add your logic here for handling the button click event
+            const imageSize = input.value
+            console.log(`Image size selected: ${imageSize}`)
+
+            parentElement.removeChild(imageControlsDiv)
+            tshirt.removeChild(tshirtImage)
+          })
+
+          input.addEventListener('input', function (event) {
+            const scale = event.target.value
+
+            tshirtImage.style.transform = `scale(${scale})`
+          })
+
+          // Add the label and input elements to the parent div
+          imageControlsDiv.appendChild(label)
+          imageControlsDiv.appendChild(input)
+          imageControlsDiv.appendChild(button)
+
+          // Get the parent element where you want to append the image controls (e.g., text-editor section)
+          const parentElement = document.getElementById('text-editor-2')
+          parentElement.appendChild(imageControlsDiv)
+
+          tshirtImage.addEventListener('mousedown', function (event) {
+            const initialLeft = tshirtImage.offsetLeft
+            const initialTop = tshirtImage.offsetTop
+            const startX = event.clientX
+            const startY = event.clientY
+
+            function onMouseMove(event) {
+              const left = initialLeft + event.clientX - startX
+              const top = initialTop + event.clientY - startY
+
+              tshirtImage.style.left = `${left}px`
+              tshirtImage.style.top = `${top}px`
+            }
+
+            function onMouseUp() {
+              document.removeEventListener('mousemove', onMouseMove)
+              document.removeEventListener('mouseup', onMouseUp)
+            }
+
+            document.addEventListener('mousemove', onMouseMove)
+            document.addEventListener('mouseup', onMouseUp)
+          })
+        }
+
+        reader.readAsDataURL(file)
+      })
+    </script>
+  </body>
+</html>
+
+<script>
+  const changeShirtImage = (color) => {
+    const tshirtImage = document.getElementById('tshirt-image')
+
+    tshirtImage.style.backgroundImage = `url('/images/shirts/${color}.jpg')`
+  }
+</script>
+
+<script>
+  const order = () => {
+    const tshirtImage = document.getElementById('tshirt')
+
+    // Используйте html2canvas для создания скриншота
+    html2canvas(tshirtImage).then(function (canvas) {
+      // Создайте ссылку для скачивания скриншота
+      const dataURL = canvas.toDataURL('image/jpeg', 0.8) // Преобразуем содержимое холста в base64-кодированное изображение
+
+      sendDataURLToServer(dataURL)
+    })
+  }
+</script>
+
+<script>
+  function sendDataURLToServer(dataURL) {
+    // Create a new XMLHttpRequest object
+    const xhr = new XMLHttpRequest()
+
+    // Set up the request
+    xhr.open('POST', '/save-screenshot', true)
+    xhr.setRequestHeader('Content-Type', 'application/json')
+
+    // Set up the callback function for when the request completes
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        console.log('Screenshot saved on the server.')
+        window.location = '/cart'
+      } else {
+        console.error('Error saving screenshot on the server.')
+      }
+    }
+
+    const username = localStorage.getItem('username')
+
+    const filename = `screenshot_${Date.now()}.jpg`
+
+    let custom = localStorage.getItem('custom')
+
+    if (!custom) {
+      custom = []
+    } else {
+      custom = JSON.parse(custom)
+    }
+
+    custom.push({ name: 'Custom', price: 500, image: filename })
+
+    localStorage.setItem('custom', JSON.stringify(custom))
+    xhr.send(JSON.stringify({ dataURL, username, filename }))
+  }
+</script>
+<script>
+  const loginButton = document.querySelector('a[href="/login"]')
+  const username = localStorage.getItem('username')
+
+  if (username) {
+    loginButton.textContent = 'Выйти'
+    loginButton.onclick = () => {
+      localStorage.removeItem('username')
+
+      window.location = '/'
+    }
+  }
+</script>

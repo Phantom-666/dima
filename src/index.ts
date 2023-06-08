@@ -16,7 +16,8 @@ const run = () => {
     require('./routes/get/product'),
     require('./routes/get/cart'),
     require('./routes/get/login'),
-    require('./routes/get/reg')
+    require('./routes/get/reg'),
+    require('./routes/get/constructor')
   )
 
   app.use(
@@ -24,7 +25,8 @@ const run = () => {
     require('./routes/post/products'),
     require('./routes/post/product'),
     require('./routes/post/reg'),
-    require('./routes/post/login')
+    require('./routes/post/login'),
+    require('./routes/post/saveScreenshot')
   )
 
   app.listen(PORT, () => console.log(`Server started on port ${PORT}`))

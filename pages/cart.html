@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Всемайки - Корзина</title>
+    <title>DIIICA - Корзина</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
     <style>
       /* Reset default styles */
@@ -181,16 +181,48 @@
                             }" alt="Product">
                             <div class="cart-item-info">
                             <h3>${p.name}</h3>
-                            <p>Цена: ${p.price}</p>
+                            <p>Цена: ${p.price}₽</p>
                             <p>Количество: ${p.amount}</p>
                             </div>
-                            <p class="cart-item-price">$${
+                            <p class="cart-item-price">${
                               p.price * p.amount
-                            }</p>
+                            }₽</p>
                         </div>`
           })
         }
       }
+    </script>
+    <script>
+      const processCustom = () => {
+        const cart = localStorage.getItem('custom')
+        const checkoutBtn = document.getElementById('checkout-btn')
+
+        const cartBlock = document.querySelector('#cart')
+
+        checkoutBtn.style.visibility = 'hidden'
+
+        if (cart) {
+          const products = JSON.parse(cart)
+
+          if (products.length === 0) return
+
+          checkoutBtn.style.visibility = 'visible'
+
+          products.map((p) => {
+            cartBlock.innerHTML += `
+                        <div class="cart-item">
+                            <img src="/images/screenshots/${p.image}" alt="Product">
+                            <div class="cart-item-info">
+                            <h3>${p.name}</h3>
+                            <p>Цена: ${p.price}₽</p>
+                            </div>
+                            <p class="cart-item-price">${p.price}₽</p>
+                        </div>`
+          })
+        }
+      }
+
+      processCustom()
     </script>
 
     <script>
@@ -201,7 +233,8 @@
 
 <script>
   const makeOrder = () => {
-    localStorage.setItem('cart', JSON.stringify([]))
+    localStorage.removeItem('cart')
+    localStorage.removeItem('custom')
 
     window.location = '/cart'
   }
