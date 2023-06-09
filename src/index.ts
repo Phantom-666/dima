@@ -17,7 +17,9 @@ const run = () => {
     require('./routes/get/cart'),
     require('./routes/get/login'),
     require('./routes/get/reg'),
-    require('./routes/get/constructor')
+    require('./routes/get/constructor'),
+    require('./routes/get/order'),
+    require('./routes/get/waitForOrder')
   )
 
   app.use(
