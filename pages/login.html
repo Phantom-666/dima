@@ -142,6 +142,18 @@
     const username = document.querySelector('#username')
     const password = document.querySelector('#password')
 
+    if (username.value.trim().length < 1) {
+      error.textContent = 'Не правильный логин'
+      error.style.visibility = 'visible'
+      return
+    }
+
+    if (password.value.trim().length < 1) {
+      error.textContent = 'Не правильный пароль'
+      error.style.visibility = 'visible'
+      return
+    }
+
     const res = await fetch(`/login`, {
       method: 'POST',
       headers: {
